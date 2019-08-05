@@ -4,15 +4,15 @@
 template <class T>
 class PtrDetails
 {
-  public:
+public:
     unsigned refcount; // current reference count
     T *memPtr;         // pointer to allocated memory
     /* isArray is true if memPtr points
-to an allocated array. It is false
-otherwise. */
+    to an allocated array. It is false
+    otherwise. */
     bool isArray; // true if pointing to array
     /* If memPtr is pointing to an allocated
-array, then arraySize contains its size */
+    array, then arraySize contains its size */
     unsigned arraySize; // size of array
     // Here, mPtr points to the allocated memory.
     // If this is an array, then size specifies
@@ -21,6 +21,20 @@ array, then arraySize contains its size */
     PtrDetails(void)
     {
         // TODO: Implement PtrDetails
+
+    }
+    PtrDetails(T *mptr, int size = 0)
+    {
+        // TODO: Implement PtrDetails
+        std::cout<<"Inside ptrDetails constructor call"<<std::endl;
+        memPtr = mptr;
+        refcount = 1;
+        isArray = false;
+        arraySize = size;
+        if (size > 0)
+        {
+            isArray= true;
+        }
     }
 };
 // Overloading operator== allows two class objects to be compared.
@@ -29,5 +43,6 @@ template <class T>
 bool operator==(const PtrDetails<T> &ob1,
                 const PtrDetails<T> &ob2)
 {
-    // TODO: Implement operator==
+    return (ob1.memPtr == ob2.memPtr);
 }
+
