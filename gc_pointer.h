@@ -203,9 +203,10 @@ Pointer<T, size>::~Pointer()
     // TODO: Finalize Pointer destructor
     // decrement ref count
 
-    p->refcount--;
-    std::cout<<"decrementing the ref count for"<<p->memPtr<<" Is Array: "<<p->isArray<<" "<<std::endl;
-
+    if (p->refcount) {
+       p->refcount--;
+       std::cout<<"decrementing the ref count for"<<p->memPtr<<" Is Array: "<<p->isArray<<" "<<std::endl;
+    }
     // Collect garbage when a pointer goes out of scope.
     collect();
 
